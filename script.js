@@ -1,4 +1,3 @@
-//your code here
 // Array of band names
 let bandNames = ['The Rolling Stones', 'Red Hot Chili Peppers', 'Led Zeppelin', 'Aerosmith', 'The Beatles'];
 
@@ -8,16 +7,21 @@ const removeArticles = (name) => {
 };
 
 // Sorting the band names in lexicographic order excluding articles
-bandNames = bandNames.map(removeArticles).sort();
+bandNames.sort((a, b) => {
+  const nameA = removeArticles(a);
+  const nameB = removeArticles(b);
+  return nameA.localeCompare(nameB);
+});
 
 // Accessing the <ul> element with id 'band'
 const ulElement = document.getElementById('band');
 
-// Looping through the sorted band names and creating <li> elements
+// Creating and appending <li> elements for each band name
 bandNames.forEach((name) => {
   const liElement = document.createElement('li');
   liElement.textContent = name;
   ulElement.appendChild(liElement);
 });
+
 
 
