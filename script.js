@@ -1,27 +1,22 @@
-// Array of band names
-let bandNames = ['The Rolling Stones', 'Red Hot Chili Peppers', 'Led Zeppelin', 'Aerosmith', 'The Beatles'];
-
-// Function to remove articles from band names
-const removeArticles = (name) => {
-  return name.replace(/^(a|an|the)\s+/i, '');
-};
-
-// Sorting the band names in lexicographic order excluding articles
-bandNames.sort((a, b) => {
-  const nameA = removeArticles(a);
-  const nameB = removeArticles(b);
-  return nameA.localeCompare(nameB);
-});
-
-// Accessing the <ul> element with id 'band'
-const ulElement = document.getElementById('band');
-
-// Creating and appending <li> elements for each band name
-bandNames.forEach((name) => {
-  const liElement = document.createElement('li');
-  liElement.textContent = name;
-  ulElement.appendChild(liElement);
-});
-
+let bandNames=['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal']
+let articles = ['A', 'AN', 'THE']
+ 
+	bandNames.sort((a,b) => (strip(a)> strip(b))? 1: -1)
+	const ref= document.getElementsByTagName("ul")[0] 
+	for (let i=0;i<bandNames.length; i++){
+		const li = document.createElement("li")
+		li.innerText= bandNames [i]
+		ref.append(li)
+	}
+function strip(word){
+	let arr = word.split(" ")
+	let s=""
+	for(let i=0;i<arr.length;i++){
+if(articles.indexOf(arr[i].toUpperCase()) === -1){
+	s=s+arr[i]
+}
+}
+return s.trim()
+}
 
 
